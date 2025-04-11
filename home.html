@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ቅዳሜ ገበያ 🛍</title>
+  <link rel="stylesheet" href="style.css" />
+  <style type="text/css">
+    #s{
+      color: #A1D6CB;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛍️ ቅዳሜ <span id="s">ገበያ </span></h1>
+
+    <input type="text" placeholder="Search products..." />
+  <button class="cart-btn">🛒 <span id="cart-count">0</span></button>
+
+  </header>
+<div class="chatbot" onclick="toggleChat()">
+  💬
+</div>
+
+<div id="chatbox" class="chatbox hidden">
+  <div id="chat-messages"></div>
+  <input type="text" id="user-input" placeholder="Ask me anything..." />
+  <button onclick="handleChat()">Send</button>
+</div>
+
+  <section class="categories">
+    <button>👕 ልብስ</button>
+    <button>📱 ኤሌክትሮኒክ</button>
+    <button>🍎 ምግብ</button>
+    <button>🎮 Games</button>
+    <button>💄 መዋቢያዎች</button>
+  </section>
+
+  <section class="products">
+    <div class="card">
+      <img src="img/L018b.jpg" alt="Product" />
+      <h2>MSI   RAIDER</h2>
+      <p>185,000 ብር <span class="discount">-15%</span></p>
+      <button onclick="addToCart('MSI   RAIDER', 165000 )">ወደ ቅርጫት</button>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="Product" />
+      <h2>🎲 Rubik's Cube (3x3)</h2>
+      <p>570 ብር<span class="discount">-5%</span></p>
+      <button onclick="addToCart('Rubik's Cube (33)', 570)">ወደ ቅርጫት</button>
+    </div>
+
+
+      <div class="card">
+      <img src="img/CK001.jpg" alt="Product" />
+      <h2>Wedding cake</h2>
+      <p>570 ብር<span class="discount">-5%</span></p>
+      <button onclick="addToCart('Wedding cake', 59.99)">ወደ ቅርጫት</button>
+    </div>
+      <div class="card">
+      <img src="https://via.placeholder.com/150" alt="Product" />
+      <h2>🎲 Rubik's Cube (3x3)</h2>
+      <p>570 ብር<span class="discount">-5%</span></p>
+      <button onclick="addToCart('Wireless Earbuds', 59.99)">ወደ ቅርጫት</button>
+    </div>
+
+
+  </section>
+
+  <footer>
+    <p>© 2025 ቅዳሜ ገበያ</p>
+  </footer>
+
+
+
+
+
+
+<script type="text/javascript">
+  
+
+  let cart = [];
+
+function addToCart(name, price) {
+  cart.push({ name, price });
+  updateCartCount();
+  console.log("Cart:", cart);
+}
+
+function updateCartCount() {
+  document.getElementById("cart-count").innerText = cart.length;
+}
+
+</script>
+
+
+
+
+<script type="text/javascript">
+function toggleChat() {
+  const chatbox = document.getElementById("chatbox");
+  chatbox.classList.toggle("hidden");
+}
+
+function handleChat() {
+  const input = document.getElementById("user-input");
+  const message = input.value.trim();
+  const chatMessages = document.getElementById("chat-messages");
+
+  if (message === "") return;
+
+  chatMessages.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+
+  // Simple chatbot logic
+  let response = "Sorry, I don't understand.";
+
+  if (message.toLowerCase().includes("discount")) {
+    response = "We offer up to 30% discounts on electronics!";
+  } else if (message.toLowerCase().includes("shipping")) {
+    response = "Shipping is free for orders over $50.";
+  } else if (message.toLowerCase().includes("hello")) {
+    response = "Hello there! How can I help you today?";
+  }
+
+  chatMessages.innerHTML += `<p><strong>Bot:</strong> ${response}</p>`;
+  input.value = "";
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+</script>
+</body>
+</html>
